@@ -6,7 +6,103 @@ editor: visual
 
 ## 
 
+Load Data
+
 ```{r}
+library(tidyverse)
 library(readxl)
-Data_raw 
+
+```
+
+Reliability VO2
+
+```{r}
+
+
+dat %>%
+  pivot_wider(names_from = timepoint, values_from = lac.4.vo2) %>%
+  mutate(diff = post - pre) %>%
+  summarise(s = sd(diff),
+            m = mean(c(pre, post)),
+            te = s / sqrt(2),
+            cv = 100 * (te / m)) %>%
+  print()
+```
+
+Reliability Speed
+
+```{r}
+dat <- read_excel("data/rawdata.xlsx") %>%
+  select(subject, timepoint, lac.4.speed) %>%
+  print()
+
+dat %>%
+  pivot_wider(names_from = timepoint, values_from = lac.4.speed) %>%
+  mutate(diff = post - pre) %>%
+  summarise(s = sd(diff),
+            m = mean(c(pre, post)),
+            te = s / sqrt(2),
+            cv = 100 * (te / m)) %>%
+  print()
+```
+
+Figure 1 - VO2
+
+```{r}
+library(ggplot2)
+rawdata <- read_excel("data/rawdata.xlsx")
+ggplot(data = rawdata, aes(x = timepoint, 
+                                y = lac.4.vo2,
+                           color = subject)) +
+  geom_point() +
+  labs(x = "Timepoint", 
+       y = "VO2 at 4 mmol/l [ml/min]", 
+       title = "VO2",
+       color = "Subjects")
+```
+
+Figure 2 - Speed
+
+```{r}
+library(ggplot2)
+library(dplyr)
+rawdata <- read_excel("data/rawdata.xlsx")
+ggplot(data = rawdata, aes(x = timepoint, 
+                                y = lac.4.speed,
+                           color = subject)) +
+  geom_point() +
+   labs(x = "Timepoint", 
+       y = "Speed at 4 mmol/l [ml/min]", 
+       title = "Speed",
+       color = "Subjects")
+```
+
+Table Descriptives
+
+```{r}
+rawdata %>%
+  select(subject, timepoint, lac.4.speed, lac.4.vo2) %>%
+  group_by(timepoint) %>%
+  summarise(gj1 = mean(lac.4.vo2, na.rm = TRUE),
+            st1 = sd(lac.4.vo2, na.rm = TRUE),
+            gj2 = mean(lac.4.speed, na.rm = TRUE),
+            st2 = sd(lac.4.speed, na.rm = TRUE)) %>%
+  mutate(timepoint = factor(timepoint, levels = c("pre", "post"),
+                        labels = c("Pre",
+                                   "Post"))) %>%
+  gt(caption = "Group characteristics") %>%
+  fmt_number(columns = gj1:st1:gj2:st2) %>%
+  fmt_number(columns = gj1,
+              decimals = 1) %>%
+  fmt_number(columns = st1,
+              decimals = 1) %>%
+  fmt_number(columns = gj2,
+              decimals = 1) %>%
+  fmt_number(columns = st2,
+              decimals = 1) %>%
+  cols_label(timepoint = "Timepoint",
+             gj1 = md("Mean VO<sub>2</sub><br><small>(ml/min)"),
+             st1 = md("SD VO<sub>2</sub><br><small>(ml/min)"),
+             gj2 = md("Mean Speed<br><small>(km/h)"),
+             st2 = md("SD Speed<br><small>(km/h)"))
 ```
