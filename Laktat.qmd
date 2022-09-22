@@ -2,9 +2,8 @@
 title: "Laktat"
 format: html
 editor: visual
+bibliography: references.bib
 ---
-
-## 
 
 Load Data
 
@@ -56,8 +55,8 @@ ggplot(data = rawdata, aes(x = timepoint,
                            color = subject)) +
   geom_point() +
   labs(x = "Timepoint", 
-       y = "VO2 at 4 mmol/l [ml/min]", 
-       title = "VO2",
+       y = "VO2 at 4 mmol/L [ml/min]", 
+       title = "VO2 at 4 mmol/L",
        color = "Subjects")
 ```
 
@@ -72,14 +71,17 @@ ggplot(data = rawdata, aes(x = timepoint,
                            color = subject)) +
   geom_point() +
    labs(x = "Timepoint", 
-       y = "Speed at 4 mmol/l [ml/min]", 
-       title = "Speed",
+       y = "Speed at 4 mmol/L [ml/min]", 
+       title = "Speed at 4 mmol/L",
        color = "Subjects")
+
 ```
 
 Table Descriptives
 
 ```{r}
+#| label: tbl-char
+#| tbl-cap: "Group characteristics (code chunk)"
 rawdata %>%
   select(subject, timepoint, lac.4.speed, lac.4.vo2) %>%
   group_by(timepoint) %>%
@@ -90,7 +92,7 @@ rawdata %>%
   mutate(timepoint = factor(timepoint, levels = c("pre", "post"),
                         labels = c("Pre",
                                    "Post"))) %>%
-  gt(caption = "Group characteristics") %>%
+  gt(caption = md("Group characteristics")) %>%
   fmt_number(columns = gj1:st1:gj2:st2) %>%
   fmt_number(columns = gj1,
               decimals = 1) %>%
@@ -101,8 +103,14 @@ rawdata %>%
   fmt_number(columns = st2,
               decimals = 1) %>%
   cols_label(timepoint = "Timepoint",
-             gj1 = md("Mean VO<sub>2</sub><br><small>(ml/min)"),
-             st1 = md("SD VO<sub>2</sub><br><small>(ml/min)"),
+             gj1 = md("Mean VO<sub>2</sub><br><small>(mL/min)"),
+             st1 = md("SD VO<sub>2</sub><br><small>(mL/min)"),
              gj2 = md("Mean Speed<br><small>(km/h)"),
-             st2 = md("SD Speed<br><small>(km/h)"))
+             st2 = md("SD Speed<br><small>(km/h)")) %>%
+  tab_header(title = "Group characteristics")
+  
 ```
+
+### 
+Bibliography
+[@hopkins2000]
