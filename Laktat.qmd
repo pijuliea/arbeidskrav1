@@ -16,7 +16,9 @@ library(readxl)
 Reliability VO2
 
 ```{r}
-
+dat <- read_excel("data/rawdata.xlsx") %>%
+  select(subject, timepoint, lac.4.vo2) %>%
+  print()
 
 dat %>%
   pivot_wider(names_from = timepoint, values_from = lac.4.vo2) %>%
