@@ -1,0 +1,12 @@
+---
+title: "Laktat"
+format: html
+editor: visual
+---
+
+## 
+
+```{r}
+library(readxl)
+Data_raw 
+```
