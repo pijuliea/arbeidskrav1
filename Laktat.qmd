@@ -114,5 +114,7 @@ rawdata %>%
 ```
 
 ### 
+
 Bibliography
+
 [@hopkins2000]
