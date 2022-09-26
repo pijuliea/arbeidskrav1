@@ -10,7 +10,6 @@ Load Data
 ```{r}
 library(tidyverse)
 library(readxl)
-
 ```
 
 Reliability VO2
@@ -84,6 +83,7 @@ Table Descriptives
 ```{r}
 #| label: tbl-char
 #| tbl-cap: "Group characteristics (code chunk)"
+library(gt)
 rawdata %>%
   select(subject, timepoint, lac.4.speed, lac.4.vo2) %>%
   group_by(timepoint) %>%
