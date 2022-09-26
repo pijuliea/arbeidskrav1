@@ -1,5 +1,5 @@
 ---
-title: "Laktat"
+title: "Laktatprofil Løping"
 format: html
 editor: visual
 bibliography: references.bib
@@ -82,7 +82,7 @@ Table Descriptives
 
 ```{r}
 #| label: tbl-char
-#| tbl-cap: "Group characteristics (code chunk)"
+#| tbl-cap: "Group characteristics"
 library(gt)
 rawdata %>%
   select(subject, timepoint, lac.4.speed, lac.4.vo2) %>%
@@ -108,8 +108,7 @@ rawdata %>%
              gj1 = md("Mean VO<sub>2</sub><br><small>(mL/min)"),
              st1 = md("SD VO<sub>2</sub><br><small>(mL/min)"),
              gj2 = md("Mean Speed<br><small>(km/h)"),
-             st2 = md("SD Speed<br><small>(km/h)")) %>%
-  tab_header(title = "Group characteristics")
+             st2 = md("SD Speed<br><small>(km/h)"))
   
 ```
 
