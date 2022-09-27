@@ -3,11 +3,14 @@ title: "Laktatprofil Løping"
 format: html
 editor: visual
 bibliography: references.bib
+editor_options: 
+  chunk_output_type: console
 ---
 
-Load Data
 
-```{r}
+
+```{r load-data}
+#| include: false
 library(tidyverse)
 library(readxl)
 ```
@@ -15,6 +18,8 @@ library(readxl)
 Reliability VO2
 
 ```{r}
+#| echo: false
+
 dat <- read_excel("data/rawdata.xlsx") %>%
   select(subject, timepoint, lac.4.vo2) %>%
   print()
@@ -49,12 +54,24 @@ dat %>%
 Figure 1 - VO2
 
 ```{r}
-library(ggplot2)
-rawdata <- read_excel("data/rawdata.xlsx")
+#| echo: false
+#| message: false
+#| warning: false
+#| fig-cap: "Figure text"
+
+rawdata <- read_excel("data/rawdata.xlsx") %>%
+  mutate(timepoint = factor(timepoint, 
+                            levels = c("pre", "post"),
+                            labels = c("Test", "Re-test")), 
+         subject = factor(subject))
+
 ggplot(data = rawdata, aes(x = timepoint, 
                                 y = lac.4.vo2,
-                           color = subject)) +
+                           color = subject, 
+                           group = subject)) +
   geom_point() +
+  geom_line() +
+  
   labs(x = "Timepoint", 
        y = "VO2 at 4 mmol/L [ml/min]", 
        title = "VO2 at 4 mmol/L",
