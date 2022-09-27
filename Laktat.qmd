@@ -82,7 +82,7 @@ Table Descriptives
 
 ```{r}
 #| label: tbl-char
-#| tbl-cap: "Group characteristics"
+#| tbl-cap: "Group characteristics (at 4 mmol/L)"
 library(gt)
 rawdata %>%
   select(subject, timepoint, lac.4.speed, lac.4.vo2) %>%
