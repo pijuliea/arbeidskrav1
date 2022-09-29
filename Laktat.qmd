@@ -72,6 +72,40 @@ I rapporten har vi gjort en utregning av standardavvik (SD), gjennomsnitt (mean)
 
 Det var få personer med i forsøket (n=7) der det ble gjennomført en test og re-test på alle forsøkspersoner.
 
+```{r table-test vs. re-test}
+#| label: tbl-char
+#| tbl-cap: "Group characteristics (at 4 mmol/L)"
+#| echo: false
+#| message: false
+#| warning: false
+rawdata <- read_excel("data/rawdata.xlsx")
+rawdata %>%
+  select(subject, timepoint, lac.4.speed, lac.4.vo2) %>%
+  group_by(timepoint) %>%
+  summarise(gj1 = mean(lac.4.vo2, na.rm = TRUE),
+            st1 = sd(lac.4.vo2, na.rm = TRUE),
+            gj2 = mean(lac.4.speed, na.rm = TRUE),
+            st2 = sd(lac.4.speed, na.rm = TRUE)) %>%
+  mutate(timepoint = factor(timepoint,
+                            levels = c("pre", "post"),
+                            labels = c("Test", "Re-Test"))) %>%
+  gt(caption = md("Group characteristics")) %>%
+  fmt_number(columns = gj1:st1:gj2:st2) %>%
+  fmt_number(columns = gj1,
+              decimals = 1) %>%
+  fmt_number(columns = st1,
+              decimals = 1) %>%
+  fmt_number(columns = gj2,
+              decimals = 1) %>%
+  fmt_number(columns = st2,
+              decimals = 1) %>%
+  cols_label(timepoint = "Timepoint",
+             gj1 = md("Mean VO<sub>2</sub><br><small>[mL/min]"),
+             st1 = md("SD VO<sub>2</sub><br><small>[mL/min]"),
+             gj2 = md("Mean Speed<br><small>[km/h]"),
+             st2 = md("SD Speed<br><small>[km/h]"))
+```
+
 Gjennomsnittelig VO2 ved 4mmol/L er 3572,9 (± 217,1). Typical error har en verdi på 153,5 og coefficient of variation 4,3 (cv).
 
 ```{r reliability-VO2}
@@ -88,25 +122,6 @@ dat %>%
             cv = 100 * (te / m)) %>%
   print()
 ```
-
-Gjennomsnittelig hastighet ved 4 mmol/L er 13,2 (± 0,55), typical error har en verdi på 0,4 og coefficient of variation 3.
-
-```{r reliability-speed}
-#| echo: false
-dat <- read_excel("data/rawdata.xlsx") %>%
-  select(subject, timepoint, lac.4.speed)
-
-dat %>%
-  pivot_wider(names_from = timepoint, values_from = lac.4.speed) %>%
-  mutate(diff = post - pre) %>%
-  summarise(s = sd(diff),
-            m = mean(c(pre, post)),
-            te = s / sqrt(2),
-            cv = 100 * (te / m)) %>%
-  print()
-```
-
-For å forbedre typical error kan vi blant annet ha samme testleder på begge tester, standardisere de siste 48 timene for testdeltakerne før test, mer rutine i labbarbeid og flere forsøkspersoner [@hopkins2000].
 
 ```{r figure-VO2}
 #| echo: false
@@ -128,6 +143,23 @@ ggplot(data = rawdata, aes(x = timepoint,
        y = "VO2 at 4 mmol/L [mL/min]", 
        title = "VO2 at 4 mmol/L",
        color = "Subjects")
+```
+
+Gjennomsnittelig hastighet ved 4 mmol/L er 13,2 (± 0,55), typical error har en verdi på 0,4 og coefficient of variation 3.
+
+```{r reliability-speed}
+#| echo: false
+dat <- read_excel("data/rawdata.xlsx") %>%
+  select(subject, timepoint, lac.4.speed)
+
+dat %>%
+  pivot_wider(names_from = timepoint, values_from = lac.4.speed) %>%
+  mutate(diff = post - pre) %>%
+  summarise(s = sd(diff),
+            m = mean(c(pre, post)),
+            te = s / sqrt(2),
+            cv = 100 * (te / m)) %>%
+  print()
 ```
 
 ```{r figure-speed}
@@ -153,36 +185,4 @@ ggplot(data = rawdata, aes(x = timepoint,
 
 ```
 
-```{r table-test vs. re-test}
-#| label: tbl-char
-#| tbl-cap: "Group characteristics (at 4 mmol/L)"
-#| echo: false
-#| message: false
-#| warning: false
-rawdata %>%
-  select(subject, timepoint, lac.4.speed, lac.4.vo2) %>%
-  group_by(timepoint) %>%
-  summarise(gj1 = mean(lac.4.vo2, na.rm = TRUE),
-            st1 = sd(lac.4.vo2, na.rm = TRUE),
-            gj2 = mean(lac.4.speed, na.rm = TRUE),
-            st2 = sd(lac.4.speed, na.rm = TRUE)) %>%
-  mutate(timepoint = factor(timepoint, levels = c("Test", "Re-Test"),
-                        labels = c("Test",
-                                   "Re-Test"))) %>%
-  gt(caption = md("Group characteristics")) %>%
-  fmt_number(columns = gj1:st1:gj2:st2) %>%
-  fmt_number(columns = gj1,
-              decimals = 1) %>%
-  fmt_number(columns = st1,
-              decimals = 1) %>%
-  fmt_number(columns = gj2,
-              decimals = 1) %>%
-  fmt_number(columns = st2,
-              decimals = 1) %>%
-  cols_label(timepoint = "Timepoint",
-             gj1 = md("Mean VO<sub>2</sub><br><small>[mL/min]"),
-             st1 = md("SD VO<sub>2</sub><br><small>[mL/min]"),
-             gj2 = md("Mean Speed<br><small>[km/h]"),
-             st2 = md("SD Speed<br><small>[km/h]"))
-  
-```
+For å forbedre typical error kan vi blant annet ha samme testleder på begge tester, standardisere de siste 48 timene for testdeltakerne før test, mer rutine i labbarbeid og flere forsøkspersoner [@hopkins2000].
