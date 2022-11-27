@@ -6,8 +6,9 @@
 
 <meta name="viewport" content="width=device-width, initial-scale=1.0, user-scalable=yes">
 
+<meta name="author" content="Emil Å., Emil H., Pia">
 
-<title>Laktatprofil Løping</title>
+<title>Assignment 1: Reliability and tools for reproducible data science</title>
 <style>
 code{white-space: pre-wrap;}
 span.smallcaps{font-variant: small-caps;}
@@ -64,13 +65,19 @@ div.csl-indent {
 
 <header id="title-block-header" class="quarto-title-block default">
 <div class="quarto-title">
-<h1 class="title">Laktatprofil Løping</h1>
+<h1 class="title">Assignment 1: Reliability and tools for reproducible data science</h1>
 </div>
 
 
 
 <div class="quarto-title-meta">
 
+    <div>
+    <div class="quarto-title-meta-heading">Author</div>
+    <div class="quarto-title-meta-contents">
+             <p>Emil Å., Emil H., Pia </p>
+          </div>
+  </div>
     
     
   </div>
@@ -80,7 +87,8 @@ div.csl-indent {
 
 <section id="protokoll" class="level2">
 <h2 class="anchored" data-anchor-id="protokoll">Protokoll</h2>
-<p><u>Klargjøring til testing</u></p>
+<section id="klargjøring-til-testing" class="level4">
+<h4 class="anchored" data-anchor-id="klargjøring-til-testing">Klargjøring til testing</h4>
 <ol type="1">
 <li>Skru på laktatmåler</li>
 <li>Skru på O2 analysator</li>
@@ -90,14 +98,18 @@ div.csl-indent {
 <li>legg inn testperson på analysator</li>
 <li>vei inn FP og trekk fra 300 gram (klær)</li>
 </ol>
-<p><u>Utstyr</u></p>
+</section>
+<section id="utstyr" class="level4">
+<h4 class="anchored" data-anchor-id="utstyr">Utstyr</h4>
 <ul>
 <li><p>Biosen C-Line Glucose and Lactate analyzer (EKF, Storbritannia)</p></li>
 <li><p>Vyntus cpx med mikskammer (Timik, Norge)</p></li>
 <li><p>Katana sport (Lode, Nederland)</p></li>
 <li><p>Sport Excalibur (Lode, Nederland)</p></li>
 </ul>
-<p><u>Gjennomføring av test</u></p>
+</section>
+<section id="gjennomføring-av-test" class="level4">
+<h4 class="anchored" data-anchor-id="gjennomføring-av-test">Gjennomføring av test</h4>
 <p>Testen gjennomføres av en testleder og en testassistent. Testlederen har ansvar for å gi informasjonen som skal gis til deltager, ta laktatprøven og styrer gjennomføringen av testen. Testassistenten har som ansvar å notere ned verdier (O2-målinger, puls, LT<sup>-</sup>, borgskala og fart)&nbsp;samt bistå testleder med øvrige oppgaver om det trengs.&nbsp;</p>
 <ul>
 <li><p>Gjennomføres med 5 minutter drag tid med en stigningsprosent på mølle = 1%.</p></li>
@@ -108,15 +120,20 @@ div.csl-indent {
 <li><p>Test avsluttes ved laktat måling på over 4 mmol/L.</p></li>
 </ul>
 <p>I denne testen anser vi laktathastighet som hastigheten hvor laktatmålingen når/treffer 4 mmol/L.</p>
-<p><u>Informasjon til deltager</u></p>
+</section>
+<section id="informasjon-til-deltager" class="level4">
+<h4 class="anchored" data-anchor-id="informasjon-til-deltager">Informasjon til deltager</h4>
 <p>Når deltager ankommer testlokale vil han/hun bli informert hva skal gjennomføres på den aktuelle testdagen. Testleder har ansvar for å gjennomgå test protokollen og informere om hva testpersonen skal gjøre, viktig at deltageren har godkjennskap til testen slik at gjennomføringen bli lettere for både testleder og deltager. Borgskala brukes også som en del av testen og derfor viktig at deltageren blir for en introduksjon til denne og forstår hvordan å bruke den.</p>
 <p>Informasjonen som skal gis til deltager under test er minimal. Deltagerene får informasjon 15 sekunder før han/hun skal ta på og av masken, når han/hun skal oppe på og av løpemøllen. Nor tid før 5 minutter av gått skal testleder be deltagerne om å vurdere hvor han/hun er på borgskala.</p>
-<p><u>Databearbeiding</u></p>
+</section>
+<section id="databearbeiding" class="level4">
+<h4 class="anchored" data-anchor-id="databearbeiding">Databearbeiding</h4>
 <p>Vi starta med å hente inn navn, alder, kjønn, høyde og vekt før testen. Underveis i testen hadde testassitent ansvar for å hente inn data. Vi henta inn data fra 2:30-4:30 underveis i hver belastning. Vi hentet ut VO2, RER, HF og VE og plotta inn resultater rett i ett plott skjema i Excel hvert 30 sekund. Etter hver belastning (5 min) gjorde testleder laktatmålinger og testpersonen kom med tall på borg. På dataen fra O2 analysatoren regnet vi ut en verdi fra hver belastning ved å regne gjennomsnittet av de to høyeste målingene.</p>
 <p>I vår rapport har vi tatt med VO2 og laktat, med hjelp av dataene kunne vi regne ut hvilken fart og VO2 testpersonen hadde på 4 mmol laktat.</p>
 </section>
-<section id="reliabilitet-av-resultater" class="level1">
-<h1>Reliabilitet av resultater</h1>
+</section>
+<section id="reliabilitet-av-resultater" class="level2">
+<h2 class="anchored" data-anchor-id="reliabilitet-av-resultater">Reliabilitet av resultater</h2>
 <p>Testprotokollen ble gjennomført likt hver gang, men en mulig feilkilde er at det var ulik testleder på test og re-test. Testledere og assistenter har lite erfaring og kan ha påvirket laktatmålinger.</p>
 <p>I rapporten har vi gjort en utregning av standardavvik (SD), gjennomsnitt (mean) av test og re-test, typical error (te) og coefficient of variation (cv). Det ble gjort en egen kalkulasjon for hastighet (km/t) og VO2 (ml/min) ved 4mmol/L laktat. Utregningene ble gjort i R studio.</p>
 <p>Det var få personer med i forsøket (n=7) der det ble gjennomført en test og re-test på alle forsøkspersoner.</p>
@@ -124,12 +141,12 @@ div.csl-indent {
 <div class="cell-output-display">
 <div id="tbl-char" class="anchored">
 
-<div id="qpquodvxrq" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
+<div id="vccutbxezg" style="overflow-x:auto;overflow-y:auto;width:auto;height:auto;">
 <style>html {
   font-family: -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, Oxygen, Ubuntu, Cantarell, 'Helvetica Neue', 'Fira Sans', 'Droid Sans', Arial, sans-serif;
 }
 
-:where(#qpquodvxrq) .gt_table {
+:where(#vccutbxezg) .gt_table {
   display: table;
   border-collapse: collapse;
   margin-left: auto;
@@ -154,7 +171,7 @@ div.csl-indent {
   border-left-color: #D3D3D3;
 }
 
-:where(#qpquodvxrq) .gt_heading {
+:where(#vccutbxezg) .gt_heading {
   background-color: #FFFFFF;
   text-align: center;
   border-bottom-color: #FFFFFF;
@@ -166,7 +183,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-:where(#qpquodvxrq) .gt_title {
+:where(#vccutbxezg) .gt_title {
   color: #333333;
   font-size: 125%;
   font-weight: initial;
@@ -178,7 +195,7 @@ div.csl-indent {
   border-bottom-width: 0;
 }
 
-:where(#qpquodvxrq) .gt_subtitle {
+:where(#vccutbxezg) .gt_subtitle {
   color: #333333;
   font-size: 85%;
   font-weight: initial;
@@ -190,13 +207,13 @@ div.csl-indent {
   border-top-width: 0;
 }
 
-:where(#qpquodvxrq) .gt_bottom_border {
+:where(#vccutbxezg) .gt_bottom_border {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
 }
 
-:where(#qpquodvxrq) .gt_col_headings {
+:where(#vccutbxezg) .gt_col_headings {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -211,7 +228,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-:where(#qpquodvxrq) .gt_col_heading {
+:where(#vccutbxezg) .gt_col_heading {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -231,7 +248,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-:where(#qpquodvxrq) .gt_column_spanner_outer {
+:where(#vccutbxezg) .gt_column_spanner_outer {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -243,15 +260,15 @@ div.csl-indent {
   padding-right: 4px;
 }
 
-:where(#qpquodvxrq) .gt_column_spanner_outer:first-child {
+:where(#vccutbxezg) .gt_column_spanner_outer:first-child {
   padding-left: 0;
 }
 
-:where(#qpquodvxrq) .gt_column_spanner_outer:last-child {
+:where(#vccutbxezg) .gt_column_spanner_outer:last-child {
   padding-right: 0;
 }
 
-:where(#qpquodvxrq) .gt_column_spanner {
+:where(#vccutbxezg) .gt_column_spanner {
   border-bottom-style: solid;
   border-bottom-width: 2px;
   border-bottom-color: #D3D3D3;
@@ -263,7 +280,7 @@ div.csl-indent {
   width: 100%;
 }
 
-:where(#qpquodvxrq) .gt_group_heading {
+:where(#vccutbxezg) .gt_group_heading {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -288,7 +305,7 @@ div.csl-indent {
   vertical-align: middle;
 }
 
-:where(#qpquodvxrq) .gt_empty_group_heading {
+:where(#vccutbxezg) .gt_empty_group_heading {
   padding: 0.5px;
   color: #333333;
   background-color: #FFFFFF;
@@ -303,15 +320,15 @@ div.csl-indent {
   vertical-align: middle;
 }
 
-:where(#qpquodvxrq) .gt_from_md > :first-child {
+:where(#vccutbxezg) .gt_from_md > :first-child {
   margin-top: 0;
 }
 
-:where(#qpquodvxrq) .gt_from_md > :last-child {
+:where(#vccutbxezg) .gt_from_md > :last-child {
   margin-bottom: 0;
 }
 
-:where(#qpquodvxrq) .gt_row {
+:where(#vccutbxezg) .gt_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -330,7 +347,7 @@ div.csl-indent {
   overflow-x: hidden;
 }
 
-:where(#qpquodvxrq) .gt_stub {
+:where(#vccutbxezg) .gt_stub {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -343,7 +360,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-:where(#qpquodvxrq) .gt_stub_row_group {
+:where(#vccutbxezg) .gt_stub_row_group {
   color: #333333;
   background-color: #FFFFFF;
   font-size: 100%;
@@ -357,11 +374,11 @@ div.csl-indent {
   vertical-align: top;
 }
 
-:where(#qpquodvxrq) .gt_row_group_first td {
+:where(#vccutbxezg) .gt_row_group_first td {
   border-top-width: 2px;
 }
 
-:where(#qpquodvxrq) .gt_summary_row {
+:where(#vccutbxezg) .gt_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -371,16 +388,16 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-:where(#qpquodvxrq) .gt_first_summary_row {
+:where(#vccutbxezg) .gt_first_summary_row {
   border-top-style: solid;
   border-top-color: #D3D3D3;
 }
 
-:where(#qpquodvxrq) .gt_first_summary_row.thick {
+:where(#vccutbxezg) .gt_first_summary_row.thick {
   border-top-width: 2px;
 }
 
-:where(#qpquodvxrq) .gt_last_summary_row {
+:where(#vccutbxezg) .gt_last_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -390,7 +407,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-:where(#qpquodvxrq) .gt_grand_summary_row {
+:where(#vccutbxezg) .gt_grand_summary_row {
   color: #333333;
   background-color: #FFFFFF;
   text-transform: inherit;
@@ -400,7 +417,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-:where(#qpquodvxrq) .gt_first_grand_summary_row {
+:where(#vccutbxezg) .gt_first_grand_summary_row {
   padding-top: 8px;
   padding-bottom: 8px;
   padding-left: 5px;
@@ -410,11 +427,11 @@ div.csl-indent {
   border-top-color: #D3D3D3;
 }
 
-:where(#qpquodvxrq) .gt_striped {
+:where(#vccutbxezg) .gt_striped {
   background-color: rgba(128, 128, 128, 0.05);
 }
 
-:where(#qpquodvxrq) .gt_table_body {
+:where(#vccutbxezg) .gt_table_body {
   border-top-style: solid;
   border-top-width: 2px;
   border-top-color: #D3D3D3;
@@ -423,7 +440,7 @@ div.csl-indent {
   border-bottom-color: #D3D3D3;
 }
 
-:where(#qpquodvxrq) .gt_footnotes {
+:where(#vccutbxezg) .gt_footnotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -437,7 +454,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-:where(#qpquodvxrq) .gt_footnote {
+:where(#vccutbxezg) .gt_footnote {
   margin: 0px;
   font-size: 90%;
   padding-left: 4px;
@@ -446,7 +463,7 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-:where(#qpquodvxrq) .gt_sourcenotes {
+:where(#vccutbxezg) .gt_sourcenotes {
   color: #333333;
   background-color: #FFFFFF;
   border-bottom-style: none;
@@ -460,7 +477,7 @@ div.csl-indent {
   border-right-color: #D3D3D3;
 }
 
-:where(#qpquodvxrq) .gt_sourcenote {
+:where(#vccutbxezg) .gt_sourcenote {
   font-size: 90%;
   padding-top: 4px;
   padding-bottom: 4px;
@@ -468,64 +485,64 @@ div.csl-indent {
   padding-right: 5px;
 }
 
-:where(#qpquodvxrq) .gt_left {
+:where(#vccutbxezg) .gt_left {
   text-align: left;
 }
 
-:where(#qpquodvxrq) .gt_center {
+:where(#vccutbxezg) .gt_center {
   text-align: center;
 }
 
-:where(#qpquodvxrq) .gt_right {
+:where(#vccutbxezg) .gt_right {
   text-align: right;
   font-variant-numeric: tabular-nums;
 }
 
-:where(#qpquodvxrq) .gt_font_normal {
+:where(#vccutbxezg) .gt_font_normal {
   font-weight: normal;
 }
 
-:where(#qpquodvxrq) .gt_font_bold {
+:where(#vccutbxezg) .gt_font_bold {
   font-weight: bold;
 }
 
-:where(#qpquodvxrq) .gt_font_italic {
+:where(#vccutbxezg) .gt_font_italic {
   font-style: italic;
 }
 
-:where(#qpquodvxrq) .gt_super {
+:where(#vccutbxezg) .gt_super {
   font-size: 65%;
 }
 
-:where(#qpquodvxrq) .gt_footnote_marks {
+:where(#vccutbxezg) .gt_footnote_marks {
   font-style: italic;
   font-weight: normal;
   font-size: 75%;
   vertical-align: 0.4em;
 }
 
-:where(#qpquodvxrq) .gt_asterisk {
+:where(#vccutbxezg) .gt_asterisk {
   font-size: 100%;
   vertical-align: 0;
 }
 
-:where(#qpquodvxrq) .gt_indent_1 {
+:where(#vccutbxezg) .gt_indent_1 {
   text-indent: 5px;
 }
 
-:where(#qpquodvxrq) .gt_indent_2 {
+:where(#vccutbxezg) .gt_indent_2 {
   text-indent: 10px;
 }
 
-:where(#qpquodvxrq) .gt_indent_3 {
+:where(#vccutbxezg) .gt_indent_3 {
   text-indent: 15px;
 }
 
-:where(#qpquodvxrq) .gt_indent_4 {
+:where(#vccutbxezg) .gt_indent_4 {
   text-indent: 20px;
 }
 
-:where(#qpquodvxrq) .gt_indent_5 {
+:where(#vccutbxezg) .gt_indent_5 {
   text-indent: 25px;
 }
 </style>
@@ -562,14 +579,6 @@ div.csl-indent {
 </div>
 <p>Gjennomsnittelig VO2 ved 4mmol/L er 3572,9 (± 217,1). Typical error har en verdi på 153,5 og coefficient of variation 4,3 (cv).</p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 4
-      s     m    te    cv
-  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1  217. 3573.  154.  4.30</code></pre>
-</div>
-</div>
-<div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -581,14 +590,6 @@ div.csl-indent {
 </div>
 <p>Gjennomsnittelig hastighet ved 4 mmol/L er 13,2 (± 0,55), typical error har en verdi på 0,4 og coefficient of variation 3.</p>
 <div class="cell">
-<div class="cell-output cell-output-stdout">
-<pre><code># A tibble: 1 × 4
-      s     m    te    cv
-  &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt; &lt;dbl&gt;
-1 0.550  13.2 0.389  2.96</code></pre>
-</div>
-</div>
-<div class="cell">
 <div class="cell-output-display">
 <div class="quarto-figure quarto-figure-center">
 <figure class="figure">
@@ -599,10 +600,13 @@ div.csl-indent {
 </div>
 </div>
 <p>For å forbedre typical error kan vi blant annet ha samme testleder på begge tester, standardisere de siste 48 timene for testdeltakerne før test, mer rutine i labbarbeid og flere forsøkspersoner <span class="citation" data-cites="hopkins2000">(<a href="#ref-hopkins2000" role="doc-biblioref">Hopkins 2000</a>)</span>.</p>
+</section>
+<section id="referanser" class="level2 unnumbered">
+
 
 </section>
 
-<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">References</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
+<div id="quarto-appendix" class="default"><section class="quarto-appendix-contents" role="doc-bibliography"><h2 class="anchored quarto-appendix-heading">Referanser</h2><div id="refs" class="references csl-bib-body hanging-indent" role="doc-bibliography">
 <div id="ref-hopkins2000" class="csl-entry" role="doc-biblioentry">
 Hopkins, Will G. 2000. <span>“Measures of Reliability in Sports Medicine and Science.”</span> <em>Sports Med</em>, 15.
 </div>

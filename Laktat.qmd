@@ -1,5 +1,6 @@
 ---
-title: "Laktatprofil Løping"
+title: "Assignment 1: Reliability and tools for reproducible data science"
+author: "Emil Å., Emil H., Pia"
 format: html
 editor: visual
 bibliography: references.bib
@@ -14,7 +15,7 @@ library(gt)
 
 ## Protokoll
 
-[Klargjøring til testing]{.underline}
+#### Klargjøring til testing
 
 1.  Skru på laktatmåler
 2.  Skru på O2 analysator
@@ -24,7 +25,7 @@ library(gt)
 6.  legg inn testperson på analysator
 7.  vei inn FP og trekk fra 300 gram (klær)
 
-[Utstyr]{.underline}
+#### Utstyr
 
 -   Biosen C-Line Glucose and Lactate analyzer (EKF, Storbritannia)
 
@@ -34,7 +35,7 @@ library(gt)
 
 -   Sport Excalibur (Lode, Nederland)
 
-[Gjennomføring av test]{.underline}
+#### Gjennomføring av test
 
 Testen gjennomføres av en testleder og en testassistent. Testlederen har ansvar for å gi informasjonen som skal gis til deltager, ta laktatprøven og styrer gjennomføringen av testen. Testassistenten har som ansvar å notere ned verdier (O2-målinger, puls, LT^-^, borgskala og fart) samt bistå testleder med øvrige oppgaver om det trengs. 
 
@@ -52,19 +53,19 @@ Testen gjennomføres av en testleder og en testassistent. Testlederen har ansvar
 
 I denne testen anser vi laktathastighet som hastigheten hvor laktatmålingen når/treffer 4 mmol/L.
 
-[Informasjon til deltager]{.underline}
+#### Informasjon til deltager
 
 Når deltager ankommer testlokale vil han/hun bli informert hva skal gjennomføres på den aktuelle testdagen. Testleder har ansvar for å gjennomgå test protokollen og informere om hva testpersonen skal gjøre, viktig at deltageren har godkjennskap til testen slik at gjennomføringen bli lettere for både testleder og deltager. Borgskala brukes også som en del av testen og derfor viktig at deltageren blir for en introduksjon til denne og forstår hvordan å bruke den.
 
 Informasjonen som skal gis til deltager under test er minimal. Deltagerene får informasjon 15 sekunder før han/hun skal ta på og av masken, når han/hun skal oppe på og av løpemøllen. Nor tid før 5 minutter av gått skal testleder be deltagerne om å vurdere hvor han/hun er på borgskala.
 
-[Databearbeiding]{.underline}
+#### Databearbeiding
 
 Vi starta med å hente inn navn, alder, kjønn, høyde og vekt før testen. Underveis i testen hadde testassitent ansvar for å hente inn data. Vi henta inn data fra 2:30-4:30 underveis i hver belastning. Vi hentet ut VO2, RER, HF og VE og plotta inn resultater rett i ett plott skjema i Excel hvert 30 sekund. Etter hver belastning (5 min) gjorde testleder laktatmålinger og testpersonen kom med tall på borg. På dataen fra O2 analysatoren regnet vi ut en verdi fra hver belastning ved å regne gjennomsnittet av de to høyeste målingene.
 
 I vår rapport har vi tatt med VO2 og laktat, med hjelp av dataene kunne vi regne ut hvilken fart og VO2 testpersonen hadde på 4 mmol laktat.
 
-# Reliabilitet av resultater
+## Reliabilitet av resultater
 
 Testprotokollen ble gjennomført likt hver gang, men en mulig feilkilde er at det var ulik testleder på test og re-test. Testledere og assistenter har lite erfaring og kan ha påvirket laktatmålinger.
 
@@ -110,6 +111,7 @@ Gjennomsnittelig VO2 ved 4mmol/L er 3572,9 (± 217,1). Typical error har en verd
 
 ```{r reliability-VO2}
 #| echo: false
+#| include: false
 dat <- read_excel("data/rawdata.xlsx") %>%
   select(subject, timepoint, lac.4.vo2)
 
@@ -149,6 +151,7 @@ Gjennomsnittelig hastighet ved 4 mmol/L er 13,2 (± 0,55), typical error har en 
 
 ```{r reliability-speed}
 #| echo: false
+#| include: false
 dat <- read_excel("data/rawdata.xlsx") %>%
   select(subject, timepoint, lac.4.speed)
 
@@ -172,6 +175,7 @@ rawdata <- read_excel("data/rawdata.xlsx") %>%
                             level = c("pre", "post"),
                             labels = c("Test", "Re-Test")),
          subject = factor(subject))
+
 ggplot(data = rawdata, aes(x = timepoint, 
                                 y = lac.4.speed,
                            color = subject,
@@ -186,3 +190,5 @@ ggplot(data = rawdata, aes(x = timepoint,
 ```
 
 For å forbedre typical error kan vi blant annet ha samme testleder på begge tester, standardisere de siste 48 timene for testdeltakerne før test, mer rutine i labbarbeid og flere forsøkspersoner [@hopkins2000].
+
+## Referanser
